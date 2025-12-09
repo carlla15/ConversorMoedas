@@ -6,11 +6,23 @@
 
 Aplicativo Android moderno para conversão de moedas em tempo real, desenvolvido com boas práticas de arquitetura e foco em performance, usabilidade e acessibilidade.
 
+📲 DOWNLOAD
+
+https://drive.google.com/uc?export=download&id=10_UwbfxYbAmhqYp8lpfOYExPdFswvqOA
+
+Instalação rápida:
+1. 📥 Baixe o APK pelo link acima
+2. ⚙️ Ative "Fontes desconhecidas" (Configurações → Segurança)
+3. 📱  Abra o APK e clique em "Instalar"
+4. 🎉 Pronto! O app estará na tela inicial
+
+Detalhes:
+- 📦 Tamanho: 18 KB
+- 📅 Versão: 1.0
 
 🚀 Funcionalidades
 
 - Conversão de moedas em tempo real  
-- Modo demonstração com taxas simuladas  
 - Histórico persistente de conversões  
 - Troca rápida entre moedas  
 - Suporte a múltiplas moedas e criptomoedas  
