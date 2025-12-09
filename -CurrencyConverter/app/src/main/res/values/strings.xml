@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Conversor de Moedas</string>
+    <string name="converter">Conversor</string>
+    <string name="history">Histórico</string>
+    <string name="amount">Valor</string>
+    <string name="from_currency">De</string>
+    <string name="to_currency">Para</string>
+    <string name="convert">Converter</string>
+    <string name="swap">Trocar</string>
+    <string name="loading_currencies">Carregando moedas...</string>
+    <string name="error_loading">Erro ao carregar moedas</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="conversion_result">Resultado</string>
+    <string name="exchange_rate">Taxa</string>
+    <string name="no_conversions">Nenhuma conversão</string>
+    <string name="clear">Limpar</string>
+    <string name="delete">Excluir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="demo_mode">Modo Demonstração</string>
+</resources>
