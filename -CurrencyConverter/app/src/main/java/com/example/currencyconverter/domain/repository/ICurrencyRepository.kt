@@ -2,7 +2,6 @@ package com.example.currencyconverter.domain.repository
 
 import com.example.currencyconverter.data.model.ApiResponse
 import com.example.currencyconverter.data.model.ConversionResult
-import com.example.currencyconverter.data.model.Currency
 import kotlinx.coroutines.flow.Flow
 
 interface ICurrencyRepository {
