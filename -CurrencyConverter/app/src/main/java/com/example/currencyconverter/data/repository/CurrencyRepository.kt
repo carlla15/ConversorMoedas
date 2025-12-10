@@ -19,8 +19,6 @@ class CurrencyRepository(
 
     private val conversionDao = database.conversionDao()
 
-    // TAXAS DE CÂMBIO COMPLETAS E FUNCIONAIS
-    // Base: USD (Dólar Americano) - TODAS as taxas em relação ao USD
     private val usdBasedRates = mapOf(
         // Taxas em relação ao USD (1 USD = X moeda)
         "USD" to 1.0,      // USD para USD
@@ -58,15 +56,14 @@ class CurrencyRepository(
 
     override suspend fun convertCurrency(from: String, to: String, amount: Double): ApiResponse {
         return try {
-            // Verifica se é a mesma moeda
-            if (from == to) {
+             if (from == to) {
                 return ApiResponse(
                     success = false,
                     error = "Selecione moedas diferentes"
                 )
             }
 
-            // Valida o valor
+
             if (amount <= 0) {
                 return ApiResponse(
                     success = false,
@@ -74,7 +71,7 @@ class CurrencyRepository(
                 )
             }
 
-            // Calcula a taxa de câmbio usando USD como intermediário
+
             val rate = calculateExchangeRate(from, to)
 
             if (rate == 0.0) {
@@ -84,10 +81,10 @@ class CurrencyRepository(
                 )
             }
 
-            // Calcula o valor convertido (2 casas decimais)
+
             val convertedAmount = round(amount * rate * 100) / 100
 
-            // Cria o resultado
+
             val result = ConversionResult(
                 fromCurrency = from,
                 toCurrency = to,
@@ -98,7 +95,7 @@ class CurrencyRepository(
                 isDemo = true
             )
 
-            // Salva no banco
+
             val id = saveConversion(result)
             val savedResult = result.copy(id = id)
 
@@ -116,20 +113,16 @@ class CurrencyRepository(
     }
 
     private fun calculateExchangeRate(from: String, to: String): Double {
-        // 1. Se ambas as moedas têm taxa em relação ao USD
+
         val fromRate = usdBasedRates[from]
         val toRate = usdBasedRates[to]
 
         if (fromRate != null && toRate != null) {
-            // Fórmula: (Valor em USD da moeda "from") / (Valor em USD da moeda "to")
-            // Exemplo: BRL → EUR
-            // 1 BRL = 1/5.05 USD = 0.198 USD
-            // 1 EUR = 0.92 USD
-            // BRL → EUR = (1/5.05) / 0.92 = 0.198 / 0.92 = 0.215
+
             return fromRate / toRate
         }
 
-        // 2. Se não encontrou, tenta o inverso
+
         val inverseRate = calculateExchangeRate(to, from)
         if (inverseRate > 0) {
             return 1.0 / inverseRate
@@ -138,11 +131,10 @@ class CurrencyRepository(
         return 0.0
     }
 
-    // Função auxiliar para debug - mostra todas as taxas disponíveis
+
     fun debugAllRates(): Map<String, Double> {
         val allRates = mutableMapOf<String, Double>()
 
-        // Calcula todas as combinações possíveis
         val currencies = usdBasedRates.keys.toList()
 
         for (from in currencies) {
@@ -159,7 +151,7 @@ class CurrencyRepository(
         return allRates
     }
 
-    // Room Database Operations
+
     override suspend fun saveConversion(conversion: ConversionResult): Long {
         return conversionDao.insertConversion(conversion.toEntity())
     }
